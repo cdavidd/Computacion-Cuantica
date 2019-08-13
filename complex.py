@@ -46,3 +46,54 @@ def fase(real,imaginario):
     c = math.atan2(imaginario,real)
     return c
 
+#vector-matrices
+def vecSuma(v1,v2):
+    #1
+    res=[]
+    for j in range (len(v1)):
+          r=suma(v1[j],v2[j])
+          res.append(r)
+    return res
+def vecInv(v):
+    #2
+    res=[]
+    for j in range (len(v)):
+        r=(-v[j][0],-v[j][1])
+        res.append(r)
+    return res
+def vecMulEsc(n,v):
+    #3
+    res=[]
+    for j in range (len(v)):
+        r=(n*v[j][0],n*v[j][1])
+        res.append(r)
+    return res
+def matSuma(m1,m2):
+    #4
+    res=[]
+    for j in range (len(m1)):
+        re=vecSuma(m1[j],m2[j])
+        res.append(re)
+    return res
+def matInv(m):
+    #5
+    res=[]
+    for j in range(len(m)):
+        r=vecInv(m[j])
+        res.append(r)
+    return res
+def matMulEsc(n,m):
+    #6
+    res=[]
+    for j in range(len(m)):
+        r=vecMulEsc(n,m[j])
+        res.append(r)
+    return res
+def matTras(m):
+    res=[]
+    for j in range(len(m[0])):
+        r=[]
+        for k in range(len(m)):
+            r.append(m[k][j])
+        res.append(r)
+    return res
