@@ -97,3 +97,12 @@ def matTras(m):
             r.append(m[k][j])
         res.append(r)
     return res
+def matAdj(m):
+    res=[]
+    for j in range(len(m)):
+        r=[]
+        for k in range(len(m[0])):
+            r.append((m[j][k][0],-m[j][k][1]))
+        res.append(r)
+    res=matTras(res)
+    return res
