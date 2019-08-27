@@ -44,6 +44,8 @@ def cartesiano_polar(real,imaginario):
 def fase(real,imaginario):
     #8
     c = math.atan2(imaginario,real)
+    if(real<0 or imaginario < 0):
+        c+=180
     return c
 
 #vector-matrices
@@ -97,6 +99,14 @@ def matTras(m):
             r.append(m[k][j])
         res.append(r)
     return res
+def matConj(m):
+    res=[]
+    for j in range(len(m)):
+        r=[]
+        for k in range(len(m[0])):
+            r.append((m[j][k][0],-m[j][k][1]))
+        res.append(r)
+    return res
 def matAdj(m):
     res=[]
     for j in range(len(m)):
@@ -106,3 +116,13 @@ def matAdj(m):
         res.append(r)
     res=matTras(res)
     return res
+def accion (v,m):
+    res=[]
+    for j in range(len(m)):
+        c=(0,0)
+        for k in range(len(m[0])):
+            c=suma(c,producto(m[j][k],v[j]))
+        res.append(c)
+    return res
+def norma(m):
+    return None
