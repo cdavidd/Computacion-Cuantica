@@ -108,6 +108,12 @@ class Testcomplex(unittest.TestCase):
         r=(47**(1/2),0)
         res=complex.normaMat(m)
         self.assertEqual(r,res)
+    def testDistMat(self):
+        m1=[[(3,0),(5,0)],[(2,0),(3,0)]]
+        m2 = [[(0,0),(1,0)],[(-1,0),(0,0)]]
+        r=(6.557438524302, 0.0)
+        res=complex.distMat(m1,m2)
+        self.assertEqual(r,res)
     def testUnitaria(self):
         #m = [[(1,-2),(3,0)],[(0,2),(4,2)]]
         m = [[(0,0),(1,0)],[(-1,0),(0,0)]]
@@ -117,12 +123,12 @@ class Testcomplex(unittest.TestCase):
         m = [[(7,0),(6,5)],[(6,-5),(-3,0)]]
         her=complex.hermitian(m)
         self.assertTrue(her)
-    def testProductoTensor(self):
+    """def testProductoTensor(self):
         m1=[[(1,0),(2,0)],[(0,0),(1,0)]]
         m2=[[(3,0),(2,0)],[(-1,0),(0,0)]]
         r= [[(3, 0), (2, 0), (6, 0), (4, 0)], [(-1, 0), (0, 0), (-2, 0), (0, 0)], [(0, 0), (0, 0), (3, 0), (2, 0)], [(0, 0), (0, 0), (-1, 0), (0, 0)]]
         res=complex.productoTensor(m1,m2)
         self.assertEqual(r,res)
-        
+     """   
 if __name__ == "__main__":
     unittest.main()
