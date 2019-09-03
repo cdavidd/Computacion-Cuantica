@@ -48,6 +48,71 @@ class Testcomplex(unittest.TestCase):
         r=complex.fase(1,-1)
         res=-0.7853981633974483
         self.assertEqual(r,res)
-    
+    def testVecSuma(self):
+        v1=[(0,9),(78,65),(-99,5)]
+        v2=[(10,9),(8,60),(99,-1)]
+        suma= [(10,18),(86,125),(0,4)]
+        res=complex.vecSuma(v1,v2)
+        self.assertEqual(suma,res)
+    def testVecInv(self):
+        v=[(0,9),(78,65),(-99,5)]
+        r=[(-0,-9),(-78,-65),(99,-5)]
+        res=complex.vecInv(v)
+        self.assertEqual(r,res)
+    def testVecMulEsc(self):
+        v=[(0,9),(3,2),(1,5)]
+        n=10
+        r=[(0,90),(30,20),(10,50)]
+        res=complex.vecMulEsc(n,v)
+        self.assertEqual(r,res)
+    def testMatSuma(self):
+        m1=[[(1,5),(10,2)],[(-3,5),(4,8)]]
+        m2=[[(1,5),(2,3)],[(0,1),(4,8)]]
+        r=[[(2,10),(12,5)],[(-3,6),(8,16)]]
+        res=complex.matSuma(m1,m2)
+        self.assertEqual(r,res)
+    def testMatInv(self):
+        m1=[[(1,5),(10,2)],[(-3,5),(4,8)]]
+        r=[[(-1,-5),(-10,-2)],[(3,-5),(-4,-8)]]
+        res=complex.matInv(m1)
+        self.assertEqual(r,res)
+    def testMatMulEsc(self):
+        m1=[[(1,5),(10,2)],[(-3,5),(4,8)]]
+        n=10
+        r=[[(10,50),(100,20)],[(-30,50),(40,80)]]
+        res= complex.matMulEsc(n,m1)
+        self.assertEqual(r,res)
+    def testMatTras(self):
+        m1=[[(1,5),(10,2)],[(-3,5),(4,8)]]
+        r=[[(1,5),(-3,5)],[(10,2),(4,8)]]
+        res=complex.matTras(m1)
+        self.assertEqual(r,res)
+    def testMatCon(self):
+        m=[[(1,5),(-3,5)],[(10,2),(4,8)]]
+        r=[[(1,-5),(-3,-5)],[(10,-2),(4,-8)]]
+        res= complex.matCon(m)
+        self.assertEqual(r,res)
+    def testMatAdj(self):
+        m=[[(1,5),(-3,5)],[(10,2),(4,8)]]
+        r=[[(1,-5),(10,-2)],[(-3,-5),(4,-8)]]
+        res= complex.matAdj(m)
+        self.assertEqual(r,res)
+    def testAccion(self):
+        v=[(0,9),(3,2),(1,5)]
+        m=[[(1,5),(-3,5)],[(10,2),(4,8)]]
+        r=[(-90, -18), (22, 58)]
+        res=complex.accion(v,m)
+        self.assertEqual(r,res)
+    def testNormaMat(self):
+        m=[[(3,0),(5,0)],[(2,0),(3,0)]]
+        r=(47**(1/2),0**(1/2))
+        res=complex.normaMat(m)
+        self.assertEqual(r,res)
+    def testUnitaria(self):
+        #m = [[(1,-2),(3,0)],[(0,2),(4,2)]]
+        m = [[(0,0),(1,0)],[(-1,0),(0,0)]]
+        res=complex.unitaria(m)
+        self.assertTrue(res)
+        
 if __name__ == "__main__":
     unittest.main()

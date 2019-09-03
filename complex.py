@@ -165,8 +165,8 @@ def distMat(m1,m2):
 def unitaria(m):
     #13
     r = multMat( m , matAdj(m) )
-    for i in range(r):
-        for j in range(r[0]):
+    for i in range(len(r)):
+        for j in range(len(r[0])):
             if (i==j and r[i][j][0]!=1 and r[i][j][0]!=1):
                 return False
             elif (i!=j and r[i][j][0]!=0 and r[i][j][0]!=0):
@@ -174,10 +174,12 @@ def unitaria(m):
     return True
 
 def hermitian(m):
+    #14
     adj= matAdj(m)
     return adj == m
 
 def productoTensor(m1,m2):
+    #15
     for x in range(2,len(m2)**2):
         if len(m2) % x == 0:
             aux = x
