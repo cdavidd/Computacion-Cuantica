@@ -41,8 +41,48 @@ Librería realizada en python donde podrá realizar operaciones con números com
 
 ## Como utilizarlo
 #### Prerequisitos
-- Python 3
+- Debe tener Python 3, en caso de no tenerlo lo podra descargar desde su pagina principal [Python Download](https://www.python.org/downloads/)
+
 ### Uso
 - descargamos la libreria
 - Importamos el archivo complex a nuestro programa
-- Utilizamos las funciones en el mediante "complex.[funsion]" siendo [funsion] la operacion a utilizar  
+```Python
+import complex;
+su programa
+```
+- Utilizamos las funciones en el mediante "complex.[funsion]" siendo [funsion] la operacion a utilizar 
+```Python
+Complejos
+c1=(1,5)
+c2=(2,-3)
+r=complex.resta(c1,c2)
+Vectores
+v=[(0,9),(78,65),(-99,5)]
+r=[(-0,-9),(-78,-65),(99,-5)]
+res=complex.vecInv(v)
+Matrices
+m=[[(1,5),(-3,5)],[(10,2),(4,8)]]
+res= complex.matAdj(m)
+```
+## Pruebas
+- Para la ejecucion de las pruebas podremos abrir el archivo con el IDLE de python y darle **F5** o vamos a la pestaña **Run** y le seleccionamos **Run module**. 
+```Python
+class Testcomplex(unittest.TestCase):
+    def testSuma(self):
+        c1=(1,5)
+        c2=(2,-3)
+        r=complex.suma(c1,c2)
+        res=(3,2)
+        self.assertEqual(r,res)
+    ...
+    #mas pruebas
+if __name__ == "__main__":
+    unittest.main()
+```
+O desde la terminal escribimos **python *programa*** o **py *programa*** si estamos en el mismo directorio si no en la parte de *programa* ponemos el direccionamiento al programa ejmplo **Documents/carpeta/programa.py**
+
+## Construido
+- Con [Python](https://www.python.org/) .
+
+## Autor
+- Cristian David Lopez Arevalo
