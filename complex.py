@@ -44,8 +44,6 @@ def cartesiano_polar(real,imaginario):
 def fase(real,imaginario):
     #8
     c = math.atan2(imaginario,real)
-    if(real<0 or imaginario < 0):
-        c+=180
     return c
 
 #vector-matrices
@@ -54,6 +52,13 @@ def vecSuma(v1,v2):
     res=[]
     for j in range (len(v1)):
           r=suma(v1[j],v2[j])
+          res.append(r)
+    return res
+def vecRes(v1,v2):
+    #1
+    res=[]
+    for j in range (len(v1)):
+          r=resta(v1[j],v2[j])
           res.append(r)
     return res
 def vecInv(v):
@@ -77,6 +82,12 @@ def matSuma(m1,m2):
         re=vecSuma(m1[j],m2[j])
         res.append(re)
     return res
+def matRes(m1,m2):
+    res=[]
+    for j in range (len(m1)):
+        re=vecRes(m1[j],m2[j])
+        res.append(re)
+    return res
 def matInv(m):
     #5
     res=[]
@@ -92,6 +103,7 @@ def matMulEsc(n,m):
         res.append(r)
     return res
 def matTras(m):
+    #7
     res=[]
     for j in range(len(m[0])):
         r=[]
@@ -99,24 +111,34 @@ def matTras(m):
             r.append(m[k][j])
         res.append(r)
     return res
-def matConj(m):
+
+def matCon(m):
+    #8
     res=[]
     for j in range(len(m)):
         r=[]
         for k in range(len(m[0])):
             r.append((m[j][k][0],-m[j][k][1]))
         res.append(r)
+    #res=matTras(res)
     return res
+
 def matAdj(m):
-    res=[]
-    for j in range(len(m)):
-        r=[]
-        for k in range(len(m[0])):
-            r.append((m[j][k][0],-m[j][k][1]))
-        res.append(r)
-    res=matTras(res)
+    #9
+    r= matTras(m)
+    res = matCon(r)
     return res
+
+def multMat(m1,m2):
+    res = [[(0,0) for x in range(len(m2[0]))] for y in range (len(m1))]
+    for i in range(len(m1)):
+        for j in range(len(m2[0])):
+            for k in range(len(m2)):
+                res[i][j] = suma(res[i][j], producto(m1[i][k],m2[k][j]))
+    return res
+
 def accion (v,m):
+	#10
     res=[]
     for j in range(len(m)):
         c=(0,0)
@@ -124,5 +146,49 @@ def accion (v,m):
             c=suma(c,producto(m[j][k],v[j]))
         res.append(c)
     return res
-def norma(m):
-    return None
+
+def normaMat(m):
+    #11
+    ad=matAdj(m)
+    mul=multMat(ad,m)
+    res=(0,0)
+    for x in range(len(mul)):
+        res= suma(res,mul[x][x])
+    return (res[0]**(1/2),res[1]**(1/2))
+
+def distMat(m1,m2):
+    #12
+    su=matRes(m1,m2)
+    res=normaMat(su)
+    return res
+
+def unitaria(m):
+    #13
+    r = multMat( m , matAdj(m) )
+    for i in range(r):
+        for j in range(r[0]):
+            if (i==j and r[i][j][0]!=1 and r[i][j][0]!=1):
+                return False
+            elif (i!=j and r[i][j][0]!=0 and r[i][j][0]!=0):
+                return False
+    return True
+
+def hermitian(m):
+    adj= matAdj(m)
+    return adj == m
+
+def productoTensor(m1,m2):
+    for x in range(2,len(m2)**2):
+        if len(m2) % x == 0:
+            aux = x
+            break
+    res = [[] for _ in range(len(m1)*len(m2))]
+    for i in range(len(m1)):
+        for l in range(len(m1[i])):
+            a = m1[i][l]
+            con = i * aux
+            for j in range(len(m2)):
+                for k in range(len(m2[j])):
+                    res[con].append(producto(a,m2[j][k]))
+                con+=1
+    return res
