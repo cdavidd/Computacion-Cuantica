@@ -181,17 +181,10 @@ def hermitian(m):
 
 def productoTensor(m1,m2):
     #15
-    for x in range(2,len(m2)**2):
-        if len(m2) % x == 0:
-            aux = x
-            break
-    res = [[] for _ in range(len(m1)*len(m2))]
+    res= [[0 for x in range(len(m1[0])*len(m2[0]))] for y in range (len(m1)*len(m2))]
     for i in range(len(m1)):
-        for l in range(len(m1[i])):
-            a = m1[i][l]
-            con = i * aux
-            for j in range(len(m2)):
-                for k in range(len(m2[j])):
-                    res[con].append(producto(a,m2[j][k]))
-                con+=1
+        for j in range (len(m1[0])):
+            for x in range(len(m2)):
+                for y in range(len(m2[0])):
+                    res[i*len(m2)+x][j*len(m2[0])+y]= producto(m1[i][j],m2[x][y])
     return res
