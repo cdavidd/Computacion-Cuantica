@@ -79,6 +79,11 @@ class Testcomplex(unittest.TestCase):
 if __name__ == "__main__":
     unittest.main()
 ```
+Salida de las pruebas:
+
+![alt text](https://github.com/cdavidd/Computacion-Cuantica/blob/master/img/test.PNG)
+
+
 O desde la terminal escribimos **python *programa*** o **py *programa*** si estamos en el mismo directorio si no en la parte de *programa* ponemos el direccionamiento al programa ejmplo **Documents/carpeta/programa.py**
 
 ## Construido
