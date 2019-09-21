@@ -10,7 +10,27 @@ def canicas(m,v,n):
             r.append(cont)
         v=r
     return v
-
+def rendija(rendija, blancos, click, v):
+    n = len(v)
+    m = [[0 for x in range(n)]for z in range (n)]
+    bT= blancos * rendija - (rendija -1)
+    
+    cont=-1
+    for x in range(1,rendija+1):
+        m[x][0]=round(1/rendija,3)
+    for x in range(bT):
+        m[cont][cont]=1
+        cont-=1
+    ini= rendija+1
+    for x in range(1,rendija+1):
+        for y in range(blancos):
+            m[ini+y][x]=round(1/blancos,3)
+        ini+=blancos-1
+    
+    """for x in  m:
+        print (x)"""
+    return canicas(m,v,click)    
+    
 def tensor (m1,m2):
     res= [[0 for x in range(len(m1[0])*len(m2[0]))] for y in range (len(m1)*len(m2))]
     for i in range(len(m1)):
