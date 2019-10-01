@@ -60,3 +60,25 @@ def system(m1,m2,v1,v2,n):
     for x in range(len(v)):
         v[x]= round(v[x]*100,2)
     return v
+
+def prob(ket,pos):
+    c= ket[pos][0]**2+ket[pos][1]**2
+    norma=0
+    for x in range(len(ket)):
+        norma+=ket[x][0]**2+ket[x][1]**2
+    return round(c/norma*100,2)
+def amplitud (si,fi):
+    bra=[]
+    res=(0,0)
+    for x in fi:
+        bra.append((x[0],-x[1]))
+    for x in range(len(si)):
+        p= complex.producto(bra[x],si[x])
+        res=complex.suma(res,p)
+    return res
+        
+    
+        
+    
+    
+       
