@@ -26,11 +26,14 @@ def rendija(rendija, blancos, click, v):
         for y in range(blancos):
             m[ini+y][x]=round(1/blancos,3)
         ini+=blancos-1
-    
-    """for x in  m:
-        print (x)"""
     return canicas(m,v,click)    
-    
+
+def rendijasComplejos(n,m,v):
+    for i in range(n):
+        v= complex.accion(v,m)
+        print(v)
+    return v
+
 def tensor (m1,m2):
     res= [[0 for x in range(len(m1[0])*len(m2[0]))] for y in range (len(m1)*len(m2))]
     for i in range(len(m1)):

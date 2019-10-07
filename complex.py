@@ -143,7 +143,7 @@ def accion (v,m):
     for j in range(len(m)):
         c=(0,0)
         for k in range(len(m[0])):
-            c=suma(c,producto(m[j][k],v[j]))
+            c=suma(c,producto(m[j][k],v[k]))
         res.append(c)
     return res
 
