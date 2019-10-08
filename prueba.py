@@ -1,4 +1,5 @@
 import complex;
+import simulacion;
 import unittest;
 
 class Testcomplex(unittest.TestCase):
@@ -100,7 +101,7 @@ class Testcomplex(unittest.TestCase):
     def testAccion(self):
         v=[(0,9),(3,2),(1,5)]
         m=[[(1,5),(-3,5)],[(10,2),(4,8)]]
-        r=[(-90, -18), (22, 58)]
+        r=[(-64, 18), (-22, 122)]
         res=complex.accion(v,m)
         self.assertEqual(r,res)
     def testNormaMat(self):
@@ -115,7 +116,6 @@ class Testcomplex(unittest.TestCase):
         res=complex.distMat(m1,m2)
         self.assertEqual(r,res)
     def testUnitaria(self):
-        #m = [[(1,-2),(3,0)],[(0,2),(4,2)]]
         m = [[(0,0),(1,0)],[(-1,0),(0,0)]]
         res=complex.unitaria(m)
         self.assertTrue(res)
@@ -129,6 +129,46 @@ class Testcomplex(unittest.TestCase):
         r= [[(3, 0), (2, 0), (6, 0), (4, 0)], [(-1, 0), (0, 0), (-2, 0), (0, 0)], [(0, 0), (0, 0), (3, 0), (2, 0)], [(0, 0), (0, 0), (-1, 0), (0, 0)]]
         res=complex.productoTensor(m1,m2)
         self.assertEqual(r,res)
+    #multiple rendija
+    def testCanicas(self):
+        m = [[0,0,0,0,0,0,0,0],[0.5,0,0,0,0,0,0,0],[0.5,0,0,0,0,0,0,0],[0,0.33,0,1,0,0,0,0],[0,0.33,0,0,1,0,0,0],[0,0.33,0.33,0,0,1,0,0],[0,0,0.33,0,0,0,1,0],[0,0,0.33,0,0,0,0,1]]
+        v = [1,0,0,0,0,0,0,0]
+        n=5
+        r=[0.0, 0.0, 0.0, 0.165, 0.165, 0.33, 0.165, 0.165]
+        res=simulacion.canicas(m,v,n)
+        self.assertEqual(r,res)
+    def testRendija(self):
+        v=[1,0,0,0,0,0,0,0]
+        r=simulacion.rendija(2,3,2,v)
+        res=[0.0, 0.0, 0.0, 0.1665, 0.1665, 0.333, 0.1665, 0.1665]
+        self.assertEqual(r,res)
+    def testRendijasComplejos(self):
+        m = [[(0,0),(0,0),(0,0),(0,0),(0,0),(0,0),(0,0),(0,0)],[(0.5,0),(0,0),(0,0),(0,0),(0,0),(0,0),(0,0),(0,0)],[(0.5,0),(0,0),(0,0),(0,0),(0,0),(0,0),(0,0),(0,0)],[(0,0),(0.33,0),(0,0),(1,0),(0,0),(0,0),(0,0),(0,0)],[(0,0),(0.33,0),(0,0),(0,0),(1,0),(0,0),(0,0),(0,0)],[(0,0),(0.33,0),(0.33,0),(0,0),(0,0),(1,0),(0,0),(0,0)],[(0,0),(0,0),(0.33,0),(0,0),(0,0),(0,0),(1,0),(0,0)],[(0,0),(0,0),(0.33,0),(0,0),(0,0),(0,0),(0,0),(1,0)]]
+        v = [(1,0),(0,0),(0,0),(0,0),(0,0),(0,0),(0,0),(0,0)]
+        r=simulacion.rendijasComplejos(2,m,v)
+        res=[(0.0, 0.0), (0.0, 0.0), (0.0, 0.0), (0.165, 0.0), (0.165, 0.0), (0.33, 0.0), (0.165, 0.0), (0.165, 0.0)]
+        self.assertEqual(r,res)
+    #sistema cuantico particula en una linea
+    def testProb(self):
+        ket=[(2,1),(-1,2),(0,1),(1,0),(3,-1),(2,0),(0,-2),(-2,1),(1,-3),(0,-1)]
+        pos=7
+        r= simulacion.prob(ket,pos)
+        res=10.87
+        self.assertEqual(r,res)
+    def testAmplitud(self):
+        si=[(2,1),(-1,2),(0,1),(1,0),(3,-1),(2,0),(0,-2),(-2,1),(1,-3),(0,-1)]
+        fi=[(-1,-4),(2,-3),(-7,6),(-1,1),(-5,-3),(5,0),(5,8),(4,-4),(8,-7),(2,-7)]
+        r= simulacion.amplitud(si,fi)
+        res=(-3, -19)
+        self.assertEqual(r,res)
+    #Teoria cuantica basica
+    def testMediaVarianza(self):
+        m=[[(1,0),(0,-1)],[(0,1),(2,0)]]
+        k=[(  (2**(1/2))/2 ,0 ),(  0,  (2**(1/2))/2  )]
+        r=simulacion.media_Varianza(m,k)
+        res=(2.5000000000000004, 0.25)
+        self.assertEqual(r,res)
+        
     
 if __name__ == "__main__":
     unittest.main()

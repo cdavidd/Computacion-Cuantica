@@ -1,5 +1,5 @@
 import complex;
-from numpy import linalg as LA
+
 
 #multiple rendija
 
@@ -34,7 +34,7 @@ def rendija(rendija, blancos, click, v):
 def rendijasComplejos(n,m,v):
     for i in range(n):
         v= complex.accion(v,m)
-        print(v)
+        
     return v
 
 def tensor (m1,m2):
@@ -126,16 +126,7 @@ def media_Varianza(m,k):
         medi=media(m,k)
         var=varianza(m,k)
     return (medi[0],var[0])
-        
-
-
-def valoresPropios(mat):
-    mat1=[[] for x  in range(len(mat))]
-    for i in range(len(mat)):
-        for j in range(len(mat[0])):
-            mat1[i].append(complex(mat[i][j][0],mat[i][j][1]))
-    w , v= LA.eigh(mat1)
-    return [w[0],w[1]]        
+ 
     
     
        
