@@ -38,6 +38,15 @@ Librería realizada en python donde podrá realizar operaciones con números com
 - Revisar si es unitaria
 - Revisar si es Hermitian
 - Producto tensor.
+### Simulación de lo clásico a lo cuántico
+- Experimento de las canicas
+- Experimento de la multiple rendija
+- Experimento de la multiple rendija con complejos
+### Sistema cuántico de partícula en una línea
+- Probabilidad de encontrarlo en una posición en particular
+- Probabilidad de transitar del primer vector al segundo
+### Teoría Cuántica básica
+- Media y Varianza
 
 ## Como utilizarlo
 #### Prerequisitos
