@@ -1,4 +1,7 @@
 import complex;
+from numpy import linalg as LA
+
+#multiple rendija
 
 def canicas(m,v,n):
     for x in range(n):
@@ -63,6 +66,7 @@ def system(m1,m2,v1,v2,n):
     for x in range(len(v)):
         v[x]= round(v[x]*100,2)
     return v
+#sistema cuantico particula en una linea
 
 def prob(ket,pos):
     c= ket[pos][0]**2+ket[pos][1]**2
@@ -79,9 +83,59 @@ def amplitud (si,fi):
         p= complex.producto(bra[x],si[x])
         res=complex.suma(res,p)
     return res
-        
+
+#Teoria cuantica basica
+def media(m,k):
+   oh=complex.accion(k,m)
+   bra=[]
+   for x in oh:
+       bra.append((x[0],-x[1]))
+   res=(0,0)
+   for x in range(len(bra)):
+       res = complex.suma(res,complex.producto(bra[x],k[x]))
     
+   return res
+def varianza(m,k):
+    medi=media(m,k)
+    mpr= [[ (0,0) for x in range(len(m[0]))] for y in range(len(m))]
+    for x in range(len(mpr)):
+        mpr[x][x]= medi
+    mat= complex.matRes(m,mpr)
+    mat = complex.multMat(mat,mat)
+    
+    vconj = []
+    for x in k:
+        vconj.append( (x[0],-x[1]) )
+
+    v=[]
+    for x in range(len(mat)):
+        c=(0,0)
+        for y in range(len(vconj)):
+            c=complex.suma(c,complex.producto(vconj[y],mat[y][x] ))
+        v.append(c)
+    res=(0,0)
+    for x in range(len(v)):
+        res = complex.suma(res,complex.producto(v[x],k[x]))
+    
+    return res
+    
+
+def media_Varianza(m,k):
+    var,medi=0,0
+    if (complex.hermitian(m)):
+        medi=media(m,k)
+        var=varianza(m,k)
+    return (medi[0],var[0])
         
+
+
+def valoresPropios(mat):
+    mat1=[[] for x  in range(len(mat))]
+    for i in range(len(mat)):
+        for j in range(len(mat[0])):
+            mat1[i].append(complex(mat[i][j][0],mat[i][j][1]))
+    w , v= LA.eigh(mat1)
+    return [w[0],w[1]]        
     
     
        
