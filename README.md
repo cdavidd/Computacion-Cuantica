@@ -92,6 +92,46 @@ Salida de las pruebas:
 
 ![alt text](https://github.com/cdavidd/Computacion-Cuantica/blob/master/img/test.PNG)
 
+- multiple rendija
+```Python
+def testCanicas(self):
+   m = [[0,0,0,0,0,0,0,0],[0.5,0,0,0,0,0,0,0],[0.5,0,0,0,0,0,0,0],[0,0.33,0,1,0,0,0,0],[0,0.33,0,0,1,0,0,0],[0,0.33,0.33,0,0,1,0,0],[0,0,0.33,0,0,0,1,0],[0,0,0.33,0,0,0,0,1]]
+   v = [1,0,0,0,0,0,0,0]
+   n=5
+   r=[0.0, 0.0, 0.0, 0.165, 0.165, 0.33, 0.165, 0.165]
+   res=simulacion.canicas(m,v,n)
+   self.assertEqual(r,res)
+def testRendija(self):
+   v=[1,0,0,0,0,0,0,0]
+   r=simulacion.rendija(2,3,2,v)
+   res=[0.0, 0.0, 0.0, 0.1665, 0.1665, 0.333, 0.1665, 0.1665]
+   self.assertEqual(r,res)
+def testRendijasComplejos(self):
+   m = [[(0,0),(0,0),(0,0),(0,0),(0,0),(0,0),(0,0),(0,0)],[(0.5,0),(0,0),(0,0),(0,0),(0,0),(0,0),(0,0),(0,0)],[(0.5,0),(0,0),(0,0),(0,0),(0,0),(0,0),(0,0),(0,0)],[(0,0),(0.33,0),(0,0),(1,0),(0,0),(0,0),(0,0),(0,0)],[(0,0),(0.33,0),(0,0),(0,0),(1,0),(0,0),(0,0),(0,0)],[(0,0),(0.33,0),(0.33,0),(0,0),(0,0),(1,0),(0,0),(0,0)],[(0,0),(0,0),(0.33,0),(0,0),(0,0),(0,0),(1,0),(0,0)],[(0,0),(0,0),(0.33,0),(0,0),(0,0),(0,0),(0,0),(1,0)]]
+   v = [(1,0),(0,0),(0,0),(0,0),(0,0),(0,0),(0,0),(0,0)]
+   r=simulacion.rendijasComplejos(2,m,v)
+   res=[(0.0, 0.0), (0.0, 0.0), (0.0, 0.0), (0.165, 0.0), (0.165, 0.0), (0.33, 0.0), (0.165, 0.0), (0.165, 0.0)]
+   self.assertEqual(r,res)
+```
+
+- Sistema cuantico particula en una linea
+```Python
+def testProb(self):
+    ket=[(2,1),(-1,2),(0,1),(1,0),(3,-1),(2,0),(0,-2),(-2,1),(1,-3),(0,-1)]
+    pos=7
+    r= simulacion.prob(ket,pos)
+    res=10.87
+    self.assertEqual(r,res)
+```
+- Teoria cuantica basica
+```Python
+def testMediaVarianza(self):
+    m=[[(1,0),(0,-1)],[(0,1),(2,0)]]
+    k=[(  (2**(1/2))/2 ,0 ),(  0,  (2**(1/2))/2  )]
+    r=simulacion.media_Varianza(m,k)
+    res=(2.5000000000000004, 0.25)
+    self.assertEqual(r,res)
+ ```
 
 O desde la terminal escribimos **python *programa*** o **py *programa*** si estamos en el mismo directorio si no en la parte de *programa* ponemos el direccionamiento al programa ejmplo **Documents/carpeta/programa.py**
 
